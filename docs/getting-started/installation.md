@@ -3,25 +3,28 @@
 ## Requirements
 
 - Python **3.13+**
-- [uv](https://docs.astral.sh/uv/) (recommended) or pip
+- `pip` and `venv` (included with Python)
 
-## With uv
+## Create a virtual environment
 
 ```bash
 git clone https://github.com/kaushalbhavsar/satark.git
 cd satark
-uv sync
+python3.13 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+python -m pip install --upgrade pip
+pip install -e ".[dev]"
 ```
 
-## With pip
+For documentation tooling as well:
 
 ```bash
-pip install -e ".[dev]"
+pip install -e ".[dev,docs]"
 ```
 
 ## Verify
 
 ```bash
-uv run satark version
-uv run pytest
+satark version
+pytest
 ```

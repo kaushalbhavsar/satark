@@ -38,6 +38,3 @@ anomalies_detected.csv
 
 # Docs site
 site/
-
-# uv
-uv.lock
