@@ -1,84 +1,122 @@
-# LSTM-Based Insider Threat Anomaly Detection
+# SATARK
 
-**Author:** Dr. Kaushal Bhavsar
-**License:** MIT
-## Overview
-This project demonstrates how to use an LSTM (Long Short-Term Memory) neural network for unsupervised anomaly detection in time-series security logs—such as USB activity, file reads/writes, or other endpoint behaviors. The goal is to identify unusual user activity that may signal insider threats or data exfiltration, using only behavioral data.
+**Scalable Automated Technology for Analysis and Ranking of Known Threats**
 
-## Features
+SATARK is an open-source security analytics framework that unifies threat detection across domains—insider threats, malware, phishing, identity, cloud, web, email, and more—on a shared, plugin-first architecture.
 
-- Unsupervised anomaly detection—no labels required
-- Works on any sequential security log data (USB, files, logins, etc.)
-- Clean, modular Python code (Keras/TensorFlow)
-- Visualizes anomaly scores and flags outliers
-- Saves detected anomalies for further analysis
-## Getting Started
+> Everything in SATARK is an **Event**. Plugins normalize vendor data into a common model, then detect, score, and explain findings with full transparency.
 
-### 1. **Clone the repository**
+[![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`git clone https://github.com/kbhavsar/satark.git`
-`cd lstm-insider-threat-detection`
+## Design Principles
 
-### 2. Install dependencies
+- Plugin-first architecture
+- Clean separation of concerns
+- Domain-agnostic core
+- AI-assisted analysis (never the source of truth)
+- Explainable detections
+- Research-friendly and enterprise-ready
+- Test-driven, typed, documented
 
-`pip install -r requirements.txt`
+## Quick Start
 
-**Dependencies:**
-`numpy`
-`pandas`
-`scikit-learn`
-`matplotlib`
-`tensorflow`
-### 3. Prepare your data
+### Requirements
 
-Prepare a CSV file (e.g., security_logs.csv) with at least:
+- Python 3.13+
+- [uv](https://github.com/astral-sh/uv) (recommended)
 
-A timestamp column (e.g., timestamp)
-One or more feature columns (e.g., usb_events, file_reads, file_writes)
-Edit the script to update:
-DATA_PATH
-TIMESTAMP_COL
-FEATURES (list of feature columns to use)
-### 4. Run the script
+### Install
 
-`python satark_usb.py`
+```bash
+uv sync
+```
 
-The script will train an LSTM model, compute anomaly scores, visualize the results, and export detected anomalies to anomalies_detected.csv.
+Or with pip:
 
-## Example Visualization
+```bash
+pip install -e ".[dev]"
+```
 
-Sample output: higher points and red markers indicate detected anomalies.
+### Analyze sample insider telemetry
 
-## How It Works
+```bash
+uv run python examples/run_insider_analysis.py
+```
 
-1. **Preprocessing**: Scales features and creates rolling sequences for LSTM.
-2. **Model**: Trains an LSTM to predict next-step behavior based on previous events.
-3.  **Scoring**: Calculates reconstruction error (MSE) as the anomaly score.
-4. **Thresholding**: Flags events as anomalies if their score exceeds a set percentile (default: 99th).
-5. **Output**: Saves anomalies and shows a plot for review.
+### CLI
 
-## Customization
+```bash
+uv run satark version
+uv run satark list-plugins
+uv run satark analyze --plugin insider --data examples/data/sample_insider.csv
+```
 
-Change the sequence length, features, and LSTM architecture as needed.
-Plug in any time-series log data—just update FEATURES and the CSV input.
+## Architecture
 
-Threshold and visualization can be tuned for your use-case.
+```
+Raw sources → Plugin.collect() → Plugin.normalize() → Event
+     → Plugin.detect() → Detection
+     → Plugin.score()  → ScoreBreakdown (factors, evidence, confidence, reasoning, references)
+     → Plugin.explain() → Finding
+```
+
+Plugins never depend on each other. The engine orchestrates pipelines and storage.
+
+### Repository layout
+
+```
+satark/
+  core/        # engine, events, models, pipelines, storage, cli, config
+  scoring/     # risk, confidence, prioritization, explainability
+  graph/       # entities, relationships, timeline, attack_paths
+  rules/       # yara, sigma, regex, stix, custom
+  ai/          # agents, prompts, rag, explain, embeddings
+  knowledge/   # mitre_attack, mitre_d3fend, capec, cve, cwe
+  plugins/     # insider, malware, phishing, web, email, cloud, identity
+tests/
+examples/
+docs/
+```
+
+## Risk Scoring
+
+SATARK never returns only a number. Every score includes:
+
+- contributing factors
+- evidence
+- confidence
+- reasoning
+- knowledge references (MITRE ATT&CK, D3FEND, CAPEC, CWE, CVE)
+
+## AI Integration
+
+LLMs assist with summarization, investigation guidance, report generation, and explanation enrichment. **Detections are always reproducible without AI.**
+
+## Legacy Demo
+
+The original LSTM USB anomaly script is preserved at [`examples/legacy/lstm_usb_anomaly.py`](examples/legacy/lstm_usb_anomaly.py). The insider plugin provides a framework-native, dependency-light successor focused on explainable behavioral spikes.
+
+## Development
+
+```bash
+uv sync
+uv run pytest
+uv run ruff check satark tests
+uv run black --check satark tests
+uv run mypy satark
+```
+
+Docs (MkDocs Material):
+
+```bash
+uv run mkdocs serve
+```
 
 ## License
 
-MIT
+MIT © Dr. Kaushal Bhavsar
 
-## Author
+## Contributing
 
-Dr. Kaushal Bhavsar - https://bhavsar.ai
-
-
-## Contributions
-
-If you improve this pipeline (add transformer models, new features, or integrations), feel free to open a pull request. 
-
-  
-
-**Disclaimer**
-
-This project is for educational and research use. It is not a replacement for commercial-grade security monitoring.
+Contributions that add plugins, knowledge providers, or detection capabilities on the shared architecture are welcome. Open a pull request with tests and documentation.

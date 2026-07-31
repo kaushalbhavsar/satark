@@ -22,10 +22,10 @@ from tensorflow.keras.callbacks import EarlyStopping
 
 # --- CONFIGURATION ---
 
-DATA_PATH = "security_logs.csv"    # Path to your CSV file
-TIMESTAMP_COL = "timestamp"        # Name of timestamp column
+DATA_PATH = "security_logs.csv"  # Path to your CSV file
+TIMESTAMP_COL = "timestamp"  # Name of timestamp column
 FEATURES = ["usb_events", "file_reads", "file_writes"]  # Change as needed
-SEQUENCE_LENGTH = 20               # How many time steps per sequence
+SEQUENCE_LENGTH = 20  # How many time steps per sequence
 EPOCHS = 25
 BATCH_SIZE = 32
 
@@ -42,37 +42,42 @@ df[FEATURES] = df[FEATURES].fillna(0)
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(df[FEATURES])
 
+
 # Create sequences for LSTM
 def create_sequences(data, seq_length):
     xs = []
     for i in range(len(data) - seq_length):
-        x = data[i:(i+seq_length)]
+        x = data[i : (i + seq_length)]
         xs.append(x)
     return np.array(xs)
+
 
 X_seq = create_sequences(X_scaled, SEQUENCE_LENGTH)
 
 # --- LSTM MODEL ---
 
-model = Sequential([
-    LSTM(64, input_shape=(SEQUENCE_LENGTH, len(FEATURES)), return_sequences=True),
-    Dropout(0.2),
-    LSTM(32, return_sequences=False),
-    Dropout(0.2),
-    Dense(len(FEATURES))
-])
-model.compile(optimizer='adam', loss='mse')
+model = Sequential(
+    [
+        LSTM(64, input_shape=(SEQUENCE_LENGTH, len(FEATURES)), return_sequences=True),
+        Dropout(0.2),
+        LSTM(32, return_sequences=False),
+        Dropout(0.2),
+        Dense(len(FEATURES)),
+    ]
+)
+model.compile(optimizer="adam", loss="mse")
 
 # Early stopping to avoid overfitting
-early_stopping = EarlyStopping(monitor='loss', patience=3, restore_best_weights=True)
+early_stopping = EarlyStopping(monitor="loss", patience=3, restore_best_weights=True)
 
 # Train (unsupervised: target = input)
 history = model.fit(
-    X_seq, X_seq[:, -1, :],
+    X_seq,
+    X_seq[:, -1, :],
     epochs=EPOCHS,
     batch_size=BATCH_SIZE,
     shuffle=False,
-    callbacks=[early_stopping]
+    callbacks=[early_stopping],
 )
 
 # --- ANOMALY DETECTION ---
@@ -93,10 +98,12 @@ df["anomaly"] = anomaly_col
 
 # --- VISUALIZE ---
 
-plt.figure(figsize=(15,4))
+plt.figure(figsize=(15, 4))
 plt.plot(df[TIMESTAMP_COL], mse, label="Anomaly Score (MSE)")
-plt.axhline(y=threshold, color='r', linestyle='--', label="Threshold")
-plt.scatter(df[TIMESTAMP_COL][df["anomaly"]], mse[anomalies], color='red', marker='x', label="Anomalies")
+plt.axhline(y=threshold, color="r", linestyle="--", label="Threshold")
+plt.scatter(
+    df[TIMESTAMP_COL][df["anomaly"]], mse[anomalies], color="red", marker="x", label="Anomalies"
+)
 plt.title("LSTM Anomaly Detection (Insider Threat)")
 plt.xlabel("Time")
 plt.ylabel("Anomaly Score")
@@ -108,6 +115,8 @@ plt.show()
 
 df[df["anomaly"]].to_csv("anomalies_detected.csv", index=False)
 
-print(f"Anomaly detection complete. {df['anomaly'].sum()} anomalies found and saved to anomalies_detected.csv")
+print(
+    f"Anomaly detection complete. {df['anomaly'].sum()} anomalies found and saved to anomalies_detected.csv"
+)
 
 # --- END OF SCRIPT ---

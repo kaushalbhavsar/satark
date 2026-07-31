@@ -1,0 +1,61 @@
+site_name: SATARK
+site_description: Scalable Automated Technology for Analysis and Ranking of Known Threats
+site_url: https://github.com/kaushalbhavsar/satark
+repo_url: https://github.com/kaushalbhavsar/satark
+repo_name: kaushalbhavsar/satark
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+    - search.suggest
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quickstart: getting-started/quickstart.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - Events: architecture/events.md
+      - Plugins: architecture/plugins.md
+      - Scoring: architecture/scoring.md
+  - API:
+      - Core: api/core.md
+  - Plugins:
+      - Insider Threat: plugins/insider.md
+  - Guides:
+      - Writing a Plugin: guides/writing-a-plugin.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - tables
+  - toc:
+      permalink: true
