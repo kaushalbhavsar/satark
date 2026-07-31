@@ -24,32 +24,29 @@ SATARK is an open-source security analytics framework that unifies threat detect
 ### Requirements
 
 - Python 3.13+
-- [uv](https://github.com/astral-sh/uv) (recommended)
+- `pip` and `venv`
 
 ### Install
 
 ```bash
-uv sync
-```
-
-Or with pip:
-
-```bash
+python3.13 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+python -m pip install --upgrade pip
 pip install -e ".[dev]"
 ```
 
 ### Analyze sample insider telemetry
 
 ```bash
-uv run python examples/run_insider_analysis.py
+python examples/run_insider_analysis.py
 ```
 
 ### CLI
 
 ```bash
-uv run satark version
-uv run satark list-plugins
-uv run satark analyze --plugin insider --data examples/data/sample_insider.csv
+satark version
+satark list-plugins
+satark analyze --plugin insider --data examples/data/sample_insider.csv
 ```
 
 ## Architecture
@@ -100,17 +97,18 @@ The original LSTM USB anomaly script is preserved at [`examples/legacy/lstm_usb_
 ## Development
 
 ```bash
-uv sync
-uv run pytest
-uv run ruff check satark tests
-uv run black --check satark tests
-uv run mypy satark
+source .venv/bin/activate
+pip install -e ".[dev,docs]"
+pytest
+ruff check satark tests
+black --check satark tests
+mypy satark
 ```
 
 Docs (MkDocs Material):
 
 ```bash
-uv run mkdocs serve
+mkdocs serve
 ```
 
 ## License
