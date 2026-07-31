@@ -1,0 +1,113 @@
+[project]
+name = "satark"
+version = "0.1.0"
+description = "SATARK — Scalable Automated Technology for Analysis and Ranking of Known Threats"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Dr. Kaushal Bhavsar", email = "pseudotot@gmail.com" },
+]
+requires-python = ">=3.13"
+keywords = [
+    "security",
+    "threat-detection",
+    "analytics",
+    "insider-threat",
+    "malware",
+    "mitre-attack",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+]
+dependencies = [
+    "pydantic>=2.10",
+    "pydantic-settings>=2.7",
+    "typer>=0.15",
+    "rich>=13.9",
+    "networkx>=3.4",
+    "jinja2>=3.1",
+    "numpy>=2.2",
+    "pandas>=2.2",
+]
+
+[project.optional-dependencies]
+ml = [
+    "scikit-learn>=1.6",
+    "matplotlib>=3.10",
+]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.9",
+    "black>=25.1",
+    "mypy>=1.14",
+    "types-networkx>=3.4",
+]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.27",
+]
+all = ["satark[ml,dev,docs]"]
+
+[project.scripts]
+satark = "satark.core.cli.app:app"
+
+[project.urls]
+Homepage = "https://github.com/kaushalbhavsar/satark"
+Documentation = "https://github.com/kaushalbhavsar/satark#readme"
+Repository = "https://github.com/kaushalbhavsar/satark"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["satark"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.9",
+    "black>=25.1",
+    "mypy>=1.14",
+    "types-networkx>=3.4",
+    "scikit-learn>=1.6",
+    "matplotlib>=3.10",
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.27",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q --cov=satark --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["satark"]
+omit = ["satark/**/__init__.py"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["satark", "tests", "examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.black]
+line-length = 100
+target-version = ["py313"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+packages = ["satark"]
