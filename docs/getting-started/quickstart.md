@@ -1,16 +1,18 @@
 # Quickstart
 
+Activate your virtual environment first (`source .venv/bin/activate`).
+
 ## Generate and analyze sample insider data
 
 ```bash
-uv run python examples/run_insider_analysis.py
+python examples/run_insider_analysis.py
 ```
 
 ## Use the CLI
 
 ```bash
-uv run satark list-plugins
-uv run satark analyze -p insider -d examples/data/sample_insider.csv
+satark list-plugins
+satark analyze -p insider -d examples/data/sample_insider.csv
 ```
 
 ## Programmatic usage

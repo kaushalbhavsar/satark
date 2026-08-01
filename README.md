@@ -2,121 +2,172 @@
 
 **Scalable Automated Technology for Analysis and Ranking of Known Threats**
 
-SATARK is an open-source security analytics framework that unifies threat detection across domains—insider threats, malware, phishing, identity, cloud, web, email, and more—on a shared, plugin-first architecture.
+Open-source Python framework for security analytics across insider threat, malware, phishing, identity, cloud, web, and email — built on one shared engine.
 
-> Everything in SATARK is an **Event**. Plugins normalize vendor data into a common model, then detect, score, and explain findings with full transparency.
+> Everything is an **Event**. Plugins normalize source data, then detect, score, and explain findings with full transparency.
 
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Design Principles
+## Why SATARK
 
-- Plugin-first architecture
-- Clean separation of concerns
-- Domain-agnostic core
-- AI-assisted analysis (never the source of truth)
-- Explainable detections
-- Research-friendly and enterprise-ready
-- Test-driven, typed, documented
+- **Plugin-first** — domain detectors share one contract; plugins never depend on each other
+- **Domain-agnostic core** — vendor formats stop at the plugin boundary
+- **Explainable risk** — every score includes factors, evidence, confidence, reasoning, and references
+- **AI-assisted, not AI-owned** — detections stay reproducible without LLMs
+- **Knowledge-mapped** — findings can map to MITRE ATT&CK, D3FEND, CAPEC, CWE, and CVE
 
-## Quick Start
-
-### Requirements
+## Requirements
 
 - Python 3.13+
-- [uv](https://github.com/astral-sh/uv) (recommended)
+- `pip` and `venv`
 
-### Install
-
-```bash
-uv sync
-```
-
-Or with pip:
+## Install
 
 ```bash
+git clone https://github.com/kaushalbhavsar/satark.git
+cd satark
+
+python3.13 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+python -m pip install --upgrade pip
 pip install -e ".[dev]"
 ```
 
-### Analyze sample insider telemetry
+Check the install:
 
 ```bash
-uv run python examples/run_insider_analysis.py
+satark version
+satark list-plugins
 ```
+
+## Quick start
 
 ### CLI
 
 ```bash
-uv run satark version
-uv run satark list-plugins
-uv run satark analyze --plugin insider --data examples/data/sample_insider.csv
+satark analyze --plugin insider --data examples/data/sample_insider.csv
 ```
 
-## Architecture
+### Example script
 
-```
-Raw sources → Plugin.collect() → Plugin.normalize() → Event
-     → Plugin.detect() → Detection
-     → Plugin.score()  → ScoreBreakdown (factors, evidence, confidence, reasoning, references)
-     → Plugin.explain() → Finding
+```bash
+python examples/run_insider_analysis.py
 ```
 
-Plugins never depend on each other. The engine orchestrates pipelines and storage.
+### Python API
 
-### Repository layout
+```python
+from satark.core.engine import AnalysisEngine
+from satark.plugins import create_plugin
 
+engine = AnalysisEngine(plugins=[create_plugin("insider")])
+
+events = engine.ingest_raw("insider", [
+    {
+        "timestamp": "2024-01-01T00:00:00+00:00",
+        "user": "alice",
+        "usb_events": 1,
+        "file_reads": 2,
+        "file_writes": 1,
+    },
+    {
+        "timestamp": "2024-01-01T01:00:00+00:00",
+        "user": "alice",
+        "usb_events": 9,
+        "file_reads": 40,
+        "file_writes": 20,
+    },
+])
+
+result = engine.analyze(plugin_name="insider", events=events)
+
+for finding in result.findings:
+    print(finding.detection.title)
+    print(f"risk={finding.score.value:.2f} confidence={finding.score.confidence:.2f}")
+    print(finding.explanation)
 ```
+
+## How it works
+
+```text
+Raw source
+  → collect()
+  → normalize()   # → Event
+  → detect()      # → Detection (no AI required)
+  → score()       # → ScoreBreakdown
+  → explain()     # → Finding
+```
+
+The engine stores events, runs plugins, and aggregates findings. Scores always answer:
+
+**“Why was this classified as malicious?”**
+
+## Project layout
+
+```text
 satark/
-  core/        # engine, events, models, pipelines, storage, cli, config
-  scoring/     # risk, confidence, prioritization, explainability
-  graph/       # entities, relationships, timeline, attack_paths
-  rules/       # yara, sigma, regex, stix, custom
-  ai/          # agents, prompts, rag, explain, embeddings
-  knowledge/   # mitre_attack, mitre_d3fend, capec, cve, cwe
-  plugins/     # insider, malware, phishing, web, email, cloud, identity
+  core/         # engine, events, models, pipelines, storage, cli, config
+  scoring/      # risk, confidence, prioritization, explainability
+  graph/        # entities, relationships, timeline, attack paths
+  rules/        # yara, sigma, regex, stix, custom
+  ai/           # agents, prompts, rag, explain, embeddings
+  knowledge/    # mitre_attack, mitre_d3fend, capec, cve, cwe
+  plugins/      # insider, malware, phishing, web, email, cloud, identity
 tests/
 examples/
 docs/
 ```
 
-## Risk Scoring
+### Built-in plugins
 
-SATARK never returns only a number. Every score includes:
-
-- contributing factors
-- evidence
-- confidence
-- reasoning
-- knowledge references (MITRE ATT&CK, D3FEND, CAPEC, CWE, CVE)
-
-## AI Integration
-
-LLMs assist with summarization, investigation guidance, report generation, and explanation enrichment. **Detections are always reproducible without AI.**
-
-## Legacy Demo
-
-The original LSTM USB anomaly script is preserved at [`examples/legacy/lstm_usb_anomaly.py`](examples/legacy/lstm_usb_anomaly.py). The insider plugin provides a framework-native, dependency-light successor focused on explainable behavioral spikes.
+| Plugin     | Domain   | Status                          |
+|------------|----------|---------------------------------|
+| `insider`  | Insider  | Behavioral USB/file spike logic |
+| `malware`  | Malware  | Heuristic stub                  |
+| `phishing` | Phishing | Heuristic stub                  |
+| `web`      | Web      | Heuristic stub                  |
+| `email`    | Email    | Heuristic stub                  |
+| `cloud`    | Cloud    | Heuristic stub                  |
+| `identity` | Identity | Heuristic stub                  |
 
 ## Development
 
 ```bash
-uv sync
-uv run pytest
-uv run ruff check satark tests
-uv run black --check satark tests
-uv run mypy satark
+source .venv/bin/activate
+pip install -e ".[dev,docs]"
+
+pytest
+ruff check satark tests
+black --check satark tests examples --exclude examples/legacy
+mypy satark
 ```
 
-Docs (MkDocs Material):
+Docs:
 
 ```bash
-uv run mkdocs serve
+mkdocs serve
 ```
+
+## Writing a plugin
+
+Subclass `satark.core.plugin.Plugin` and implement:
+
+1. `normalize()` — raw records → `Event`
+2. `detect()` — reproducible detections
+3. `score()` — transparent `ScoreBreakdown`
+4. `explain()` — optional; default explanation is provided
+
+See [docs/guides/writing-a-plugin.md](docs/guides/writing-a-plugin.md).
+
+## Legacy demo
+
+The original LSTM USB anomaly script lives at [`examples/legacy/lstm_usb_anomaly.py`](examples/legacy/lstm_usb_anomaly.py). Prefer the `insider` plugin for framework-native analysis.
 
 ## License
 
-MIT © Dr. Kaushal Bhavsar
+MIT © [Dr. Kaushal Bhavsar](https://bhavsar.ai)
 
 ## Contributing
 
-Contributions that add plugins, knowledge providers, or detection capabilities on the shared architecture are welcome. Open a pull request with tests and documentation.
+PRs that add plugins, knowledge providers, tests, or docs on the shared architecture are welcome.
