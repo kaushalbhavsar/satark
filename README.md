@@ -146,8 +146,11 @@ mypy satark
 Docs:
 
 ```bash
+pip install -e ".[docs]"
 mkdocs serve
 ```
+
+Full documentation (architecture, guides, and API reference) lives in [`docs/`](docs/) and builds with MkDocs Material.
 
 ## Writing a plugin
 

@@ -1,19 +1,23 @@
 site_name: SATARK
 site_description: Scalable Automated Technology for Analysis and Ranking of Known Threats
-site_url: https://github.com/kaushalbhavsar/satark
+site_author: Dr. Kaushal Bhavsar
+site_url: https://kaushalbhavsar.github.io/satark/
 repo_url: https://github.com/kaushalbhavsar/satark
 repo_name: kaushalbhavsar/satark
+edit_uri: edit/main/docs/
 
 theme:
   name: material
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: teal
       accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: teal
       accent: indigo
       toggle:
@@ -22,40 +26,89 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.top
+    - navigation.footer
     - content.code.copy
+    - content.action.edit
     - search.suggest
+    - search.highlight
+    - toc.follow
 
 nav:
   - Home: index.md
   - Getting Started:
       - Installation: getting-started/installation.md
       - Quickstart: getting-started/quickstart.md
+      - Concepts: getting-started/concepts.md
   - Architecture:
       - Overview: architecture/overview.md
       - Events: architecture/events.md
+      - Engine: architecture/engine.md
       - Plugins: architecture/plugins.md
       - Scoring: architecture/scoring.md
-  - API:
-      - Core: api/core.md
+      - Graph: architecture/graph.md
+      - Rules: architecture/rules.md
+      - AI: architecture/ai.md
+      - Knowledge: architecture/knowledge.md
   - Plugins:
+      - Overview: plugins/overview.md
       - Insider Threat: plugins/insider.md
+      - Domain Stubs: plugins/stubs.md
   - Guides:
       - Writing a Plugin: guides/writing-a-plugin.md
+      - CLI: guides/cli.md
+      - Knowledge Mapping: guides/knowledge-mapping.md
+      - AI Assistants: guides/ai-assistants.md
+      - Testing: guides/testing.md
+      - Contributing: guides/contributing.md
+      - Examples: guides/examples.md
+  - API Reference:
+      - Core: api/core.md
+      - Events: api/events.md
+      - Engine: api/engine.md
+      - Plugin: api/plugin.md
+      - Models: api/models.md
+      - Storage: api/storage.md
+      - Config: api/config.md
+      - Scoring: api/scoring.md
+      - Graph: api/graph.md
+      - Rules: api/rules.md
+      - AI: api/ai.md
+      - Knowledge: api/knowledge.md
+      - Plugins: api/plugins.md
 
 plugins:
   - search
   - mkdocstrings:
       handlers:
         python:
+          paths: [.]
           options:
             docstring_style: google
             show_source: true
+            show_root_heading: true
+            show_symbol_type_heading: true
+            members_order: source
+            merge_init_into_class: true
+            separate_signature: true
+            show_signature_annotations: true
 
 markdown_extensions:
   - admonition
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - pymdownx.details
+  - attr_list
+  - md_in_html
   - tables
   - toc:
       permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kaushalbhavsar/satark
