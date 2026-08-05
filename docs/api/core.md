@@ -1,7 +1,26 @@
 # Core API
 
-::: satark.core.engine.AnalysisEngine
+The `satark.core` package is the domain-agnostic foundation.
 
-::: satark.core.plugin.Plugin
+## Subpages
 
-::: satark.core.events.Event
+| Page | Contents |
+|------|----------|
+| [Events](events.md) | `Event`, `EventCategory` |
+| [Engine](engine.md) | `AnalysisEngine`, pipelines |
+| [Plugin](plugin.md) | Plugin contract types |
+| [Models](models.md) | Detection, evidence, score, finding |
+| [Storage](storage.md) | Event stores |
+| [Config](config.md) | Settings |
+
+## Package exports
+
+```python
+from satark.core import (
+    AnalysisEngine,
+    AnalysisResult,
+    Plugin,
+    PluginContext,
+    PluginMeta,
+)
+```
