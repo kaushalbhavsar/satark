@@ -62,6 +62,7 @@ nav:
       - Testing: guides/testing.md
       - Contributing: guides/contributing.md
       - Examples: guides/examples.md
+      - Publishing: guides/publishing.md
   - API Reference:
       - Core: api/core.md
       - Events: api/events.md

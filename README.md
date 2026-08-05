@@ -152,6 +152,8 @@ mkdocs serve
 
 Full documentation (architecture, guides, and API reference) lives in [`docs/`](docs/) and builds with MkDocs Material.
 
+To publish on GitHub Pages or a custom domain, see [`docs/guides/publishing.md`](docs/guides/publishing.md).
+
 ## Writing a plugin
 
 Subclass `satark.core.plugin.Plugin` and implement:
