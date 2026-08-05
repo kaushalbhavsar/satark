@@ -1,10 +1,11 @@
-site_name: SATARK
-site_description: Scalable Automated Technology for Analysis and Ranking of Known Threats
-site_author: Dr. Kaushal Bhavsar
-site_url: https://kaushalbhavsar.github.io/satark/
+site_name: SATARK Documentation
+site_description: >
+  Documentation for the SATARK open-source security analytics framework.
+site_url: https://satark.org/docs/
 repo_url: https://github.com/kaushalbhavsar/satark
 repo_name: kaushalbhavsar/satark
 edit_uri: edit/main/docs/
+docs_dir: docs
 
 theme:
   name: material
@@ -24,71 +25,45 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.tabs
     - navigation.sections
+    - navigation.indexes
     - navigation.top
-    - navigation.footer
     - content.code.copy
     - content.action.edit
     - search.suggest
     - search.highlight
-    - toc.follow
 
 nav:
   - Home: index.md
-  - Getting Started:
-      - Installation: getting-started/installation.md
-      - Quickstart: getting-started/quickstart.md
-      - Concepts: getting-started/concepts.md
-  - Architecture:
-      - Overview: architecture/overview.md
-      - Events: architecture/events.md
-      - Engine: architecture/engine.md
-      - Plugins: architecture/plugins.md
-      - Scoring: architecture/scoring.md
-      - Graph: architecture/graph.md
-      - Rules: architecture/rules.md
-      - AI: architecture/ai.md
-      - Knowledge: architecture/knowledge.md
+  - Getting started: getting-started.md
+  - Architecture: architecture.md
+  - Concepts:
+      - Events: concepts/events.md
+      - Findings: concepts/findings.md
+      - Scoring: concepts/scoring.md
+      - Plugins: concepts/plugins.md
   - Plugins:
-      - Overview: plugins/overview.md
-      - Insider Threat: plugins/insider.md
-      - Domain Stubs: plugins/stubs.md
-  - Guides:
-      - Writing a Plugin: guides/writing-a-plugin.md
-      - CLI: guides/cli.md
-      - Knowledge Mapping: guides/knowledge-mapping.md
-      - AI Assistants: guides/ai-assistants.md
-      - Testing: guides/testing.md
-      - Contributing: guides/contributing.md
-      - Examples: guides/examples.md
-      - Publishing: guides/publishing.md
-  - API Reference:
-      - Core: api/core.md
-      - Events: api/events.md
-      - Engine: api/engine.md
-      - Plugin: api/plugin.md
-      - Models: api/models.md
-      - Storage: api/storage.md
-      - Config: api/config.md
-      - Scoring: api/scoring.md
-      - Graph: api/graph.md
-      - Rules: api/rules.md
-      - AI: api/ai.md
-      - Knowledge: api/knowledge.md
-      - Plugins: api/plugins.md
+      - Overview: plugins/index.md
+      - Insider threats: plugins/insider.md
+      - Malware: plugins/malware.md
+      - Phishing: plugins/phishing.md
+      - Web: plugins/web.md
+      - Email: plugins/email.md
+      - Cloud: plugins/cloud.md
+      - Identity: plugins/identity.md
+  - API reference: api/index.md
+  - Research origins: research/origins.md
 
 plugins:
   - search
   - mkdocstrings:
       handlers:
         python:
-          paths: [.]
+          paths: [src]
           options:
             docstring_style: google
             show_source: true
             show_root_heading: true
-            show_symbol_type_heading: true
             members_order: source
             merge_init_into_class: true
             separate_signature: true
@@ -97,19 +72,17 @@ plugins:
 markdown_extensions:
   - admonition
   - attr_list
-  - md_in_html
   - tables
   - toc:
       permalink: true
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.inlinehilite
   - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
 
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/kaushalbhavsar/satark
+    - icon: fontawesome/solid/globe
+      link: https://satark.org/

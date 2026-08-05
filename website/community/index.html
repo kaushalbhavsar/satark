@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Community — SATARK</title>
+    <meta
+      name="description"
+      content="How to contribute to SATARK, report bugs, propose plugins, disclose security issues, and join discussions."
+    />
+    <link rel="canonical" href="https://satark.org/community/" />
+    <meta property="og:title" content="Community — SATARK" />
+    <meta
+      property="og:description"
+      content="Contributing, bug reports, plugin proposals, security disclosures, discussions, and code of conduct."
+    />
+    <meta property="og:url" content="https://satark.org/community/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SATARK" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="/">
+          <span class="brand__mark">SATARK</span>
+          <span class="brand__tag">security analytics</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="/">SATARK</a></li>
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="/research/">Research</a></li>
+            <li><a href="/history/">History</a></li>
+            <li><a href="/community/" aria-current="page">Community</a></li>
+            <li>
+              <a href="https://github.com/kaushalbhavsar/satark" rel="noopener noreferrer"
+                >GitHub</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <header class="page-hero">
+        <div class="container">
+          <h1>Community</h1>
+          <p>
+            SATARK is an early open-source rebuild. Contributions that strengthen the shared
+            architecture, plugins, tests, and documentation are welcome.
+          </p>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="container split">
+          <article class="panel">
+            <h2>Contributing</h2>
+            <p>
+              Read
+              <a href="https://github.com/kaushalbhavsar/satark/blob/main/CONTRIBUTING.md"
+                >CONTRIBUTING.md</a
+              >
+              for setup, coding standards, and pull request expectations.
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Reporting bugs</h2>
+            <p>
+              Open a GitHub issue with reproduction steps, expected vs actual behavior, and
+              environment details:
+              <a
+                href="https://github.com/kaushalbhavsar/satark/issues"
+                rel="noopener noreferrer"
+                >github.com/kaushalbhavsar/satark/issues</a
+              >.
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Proposing plugins</h2>
+            <p>
+              New domain plugins should follow the plugin contract
+              (<code>collect → normalize → detect → score → explain</code>) and must not depend on
+              other plugins. Start from the
+              <a href="/docs/plugins/">plugins documentation</a>.
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Security disclosures</h2>
+            <p>
+              Report security vulnerabilities privately using the process in
+              <a href="https://github.com/kaushalbhavsar/satark/blob/main/SECURITY.md"
+                >SECURITY.md</a
+              >. Do not open public issues for undisclosed vulnerabilities.
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Discussions</h2>
+            <p>
+              Use GitHub Discussions or issues for design questions, roadmap ideas, and plugin
+              proposals:
+              <a
+                href="https://github.com/kaushalbhavsar/satark/discussions"
+                rel="noopener noreferrer"
+                >Discussions</a
+              >
+              (enable if not yet available; otherwise use issues).
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Code of conduct</h2>
+            <p>
+              Participants are expected to follow the
+              <a href="https://github.com/kaushalbhavsar/satark/blob/main/CODE_OF_CONDUCT.md"
+                >Code of Conduct</a
+              >.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div>
+          <h2>SATARK</h2>
+          <p class="site-footer__note site-footer__note--flush">
+            Created by Kaushal Bhavsar. Official site:
+            <a href="https://satark.org/">satark.org</a>.
+          </p>
+        </div>
+        <div>
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="/research/">Research</a></li>
+            <li><a href="/history/">History</a></li>
+            <li><a href="/community/">Community</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li>
+              <a href="https://github.com/kaushalbhavsar/satark" rel="noopener noreferrer"
+                >GitHub repository</a
+              >
+            </li>
+            <li><a href="/trademark/">Name and branding note</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
