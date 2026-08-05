@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research — SATARK</title>
+    <meta
+      name="description"
+      content="Research themes around SATARK: insider threat analytics, threat scoring, explainable security analytics, publications, datasets, and experiments."
+    />
+    <link rel="canonical" href="https://satark.org/research/" />
+    <meta property="og:title" content="Research — SATARK" />
+    <meta
+      property="og:description"
+      content="Research themes and placeholders for publications, datasets, and experiments related to SATARK."
+    />
+    <meta property="og:url" content="https://satark.org/research/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SATARK" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="/">
+          <span class="brand__mark">SATARK</span>
+          <span class="brand__tag">security analytics</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="/">SATARK</a></li>
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="/research/" aria-current="page">Research</a></li>
+            <li><a href="/history/">History</a></li>
+            <li><a href="/community/">Community</a></li>
+            <li>
+              <a href="https://github.com/kaushalbhavsar/satark" rel="noopener noreferrer"
+                >GitHub</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <header class="page-hero">
+        <div class="container">
+          <h1>Research</h1>
+          <p>
+            SATARK’s open-source rebuild is grounded in security research themes: threat analysis,
+            ranking, explainability, and multi-domain detection. Publication metadata below is a
+            placeholder until verified references are added.
+          </p>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="container split">
+          <article class="panel">
+            <h2>Original SATARK research</h2>
+            <p>
+              Foundational ideas around automated analysis and ranking of known threats. Detailed
+              paper titles, venues, and years are
+              <span class="badge">pending verification</span>.
+            </p>
+            <p>
+              See also
+              <a href="/docs/research/origins/">Research origins in the documentation</a>.
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Insider threat research</h2>
+            <p>
+              Behavioral analytics for unusual endpoint activity (for example USB and file access
+              patterns). The repository includes an insider plugin and a legacy LSTM demo retained
+              for research comparison.
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Threat scoring</h2>
+            <p>
+              Transparent risk scoring with contributing factors, evidence, confidence, reasoning,
+              and knowledge references — not unexplained numeric scores.
+            </p>
+          </article>
+          <article class="panel">
+            <h2>Explainable security analytics</h2>
+            <p>
+              Detections should answer “why was this classified as malicious?” AI may assist with
+              summaries, but detections must remain reproducible without an LLM.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <h2 class="section__title">Publications</h2>
+          <div class="panel">
+            <p class="notice">
+              <strong>Placeholder:</strong> Publication list (title, authors, venue, year, DOI/URL)
+              will be added after verification. No titles are invented here.
+            </p>
+            <ul class="list-plain">
+              <li>Entry template — title / venue / year — <span class="badge">pending verification</span></li>
+            </ul>
+          </div>
+
+          <h2 class="section__title">Datasets</h2>
+          <div class="panel">
+            <p>
+              Public sample telemetry for demos lives under
+              <code>examples/data/</code> in the repository. Broader research datasets will be linked
+              here when licensing and provenance are confirmed.
+            </p>
+          </div>
+
+          <h2 class="section__title">Experiments</h2>
+          <div class="panel">
+            <ul class="list-plain">
+              <li>
+                Insider behavioral spike analysis via the open-source
+                <a href="/docs/plugins/insider/">insider plugin</a>
+              </li>
+              <li>
+                Legacy LSTM USB anomaly script retained at
+                <code>examples/legacy/lstm_usb_anomaly.py</code>
+              </li>
+              <li>Additional experiments — <span class="badge">pending verification</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div>
+          <h2>SATARK</h2>
+          <p class="site-footer__note site-footer__note--flush">
+            Created by Kaushal Bhavsar. Official site:
+            <a href="https://satark.org/">satark.org</a>.
+          </p>
+        </div>
+        <div>
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="/research/">Research</a></li>
+            <li><a href="/history/">History</a></li>
+            <li><a href="/community/">Community</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li>
+              <a href="https://github.com/kaushalbhavsar/satark" rel="noopener noreferrer"
+                >GitHub repository</a
+              >
+            </li>
+            <li><a href="/trademark/">Name and branding note</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

@@ -1,7 +1,8 @@
 """CLI smoke tests."""
 
-from satark.core.cli.app import app
 from typer.testing import CliRunner
+
+from satark.core.cli.app import app
 
 runner = CliRunner()
 
