@@ -48,6 +48,7 @@
           <ul>
             <li><a href="./" aria-current="page">SATARK</a></li>
             <li><a href="docs/">Documentation</a></li>
+            <li><a href="architecture/">Architecture</a></li>
             <li><a href="research/">Research</a></li>
             <li><a href="history/">History</a></li>
             <li><a href="community/">Community</a></li>
@@ -84,8 +85,48 @@
               rel="noopener noreferrer"
               >View on GitHub</a
             >
-            <a class="button button--secondary" href="docs/architecture/">Explore the architecture</a>
+            <a class="button button--secondary" href="architecture/">Explore the architecture</a>
           </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="arch-home-title">
+        <div class="container">
+          <h2 class="section__title" id="arch-home-title">Architecture</h2>
+          <p class="section__lede">
+            Plugin-first analytics: normalize telemetry into Events, then run
+            detect → score → explain. Supporting layers (rules, knowledge, graph, AI) sit beside
+            the critical path.
+            <a href="architecture/">Open the architecture page</a> for invariants and docs links.
+          </p>
+          <figure class="diagram-frame" aria-labelledby="arch-home-caption">
+            <div class="diagram-frame__glow" aria-hidden="true"></div>
+            <pre class="mermaid diagram" id="satark-architecture-home">
+flowchart LR
+  T["Telemetry"] --> P["Plugins"]
+  P --> E["Events"]
+  E --> ENG["AnalysisEngine"]
+  ENG --> PIPE["detect → score → explain"]
+  PIPE --> F["Findings"]
+  R["Rules"] -.-> ENG
+  K["Knowledge"] -.-> PIPE
+  AI["AI optional"] -.-> F
+
+  classDef neon fill:#121214,stroke:#ed1c24,stroke-width:2px,color:#f4f4f5
+  classDef neonAmber fill:#121214,stroke:#e0b35a,stroke-width:2px,color:#f4f4f5
+  classDef neonOut fill:#1a0a0b,stroke:#ff4d54,stroke-width:2.5px,color:#fff5f5
+
+  class T,P,E,ENG,PIPE neon
+  class F neonOut
+  class R,K,AI neonAmber
+
+  linkStyle default stroke:#ff4d54,stroke-width:2px
+            </pre>
+            <figcaption id="arch-home-caption" class="diagram-frame__caption">
+              Compact view of the SATARK pipeline. Neon red edges mark the main flow; amber nodes
+              are supporting modules.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -171,6 +212,7 @@
           <h2>Explore</h2>
           <ul>
             <li><a href="docs/">Documentation</a></li>
+            <li><a href="architecture/">Architecture</a></li>
             <li><a href="research/">Research</a></li>
             <li><a href="history/">History</a></li>
             <li><a href="community/">Community</a></li>
@@ -197,5 +239,7 @@
       </div>
     </footer>
     <script src="assets/js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" defer></script>
+    <script src="assets/js/mermaid-init.js" defer></script>
   </body>
 </html>
