@@ -6,13 +6,13 @@
     <title>Research — SATARK</title>
     <meta
       name="description"
-      content="Research themes around SATARK: insider threat analytics, threat scoring, explainable security analytics, publications, datasets, and experiments."
+      content="Confirmed SATARK-related research: insider threat prediction, behavioral analysis, malware detection, web security, thesis work, and patent filings."
     />
     <link rel="canonical" href="https://satark.org/research/" />
     <meta property="og:title" content="Research — SATARK" />
     <meta
       property="og:description"
-      content="Research themes and placeholders for publications, datasets, and experiments related to SATARK."
+      content="Peer-reviewed papers, conference work, thesis, and patent references behind the SATARK security analytics framework."
     />
     <meta property="og:url" content="https://satark.org/research/" />
     <meta property="og:type" content="website" />
@@ -66,9 +66,9 @@
         <div class="container">
           <h1>Research</h1>
           <p>
-            SATARK’s open-source rebuild is grounded in security research themes: threat analysis,
-            ranking, explainability, and multi-domain detection. Publication metadata below is a
-            placeholder until verified references are added.
+            SATARK’s open-source rebuild is grounded in peer-reviewed and conference research on
+            insider threat prediction, behavioral analysis, malware techniques, and web security.
+            Publication details below are taken from confirmed BibTeX records.
           </p>
         </div>
       </header>
@@ -78,9 +78,9 @@
           <article class="panel">
             <h2>Original SATARK research</h2>
             <p>
-              Foundational ideas around automated analysis and ranking of known threats. Detailed
-              paper titles, venues, and years are
-              <span class="badge">pending verification</span>.
+              Early architecture and incident-response work established detection of insider cyber
+              threats as a primary research direction (2012 onward), later formalized in behavioral
+              prediction studies and doctoral research.
             </p>
             <p>
               See also
@@ -90,9 +90,9 @@
           <article class="panel">
             <h2>Insider threat research</h2>
             <p>
-              Behavioral analytics for unusual endpoint activity (for example USB and file access
-              patterns). The repository includes an insider plugin and a legacy LSTM demo retained
-              for research comparison.
+              Behavioral analysis for predicting and detecting insider threats — including deep
+              learning approaches and Windows forensic analysis — forms the core of the SATARK
+              research lineage.
             </p>
           </article>
           <article class="panel">
@@ -115,15 +115,111 @@
       <section class="section section--tight">
         <div class="container">
           <h2 class="section__title">Publications</h2>
-          <div class="panel">
-            <p class="notice">
-              <strong>Placeholder:</strong> Publication list (title, authors, venue, year, DOI/URL)
-              will be added after verification. No titles are invented here.
-            </p>
-            <ul class="list-plain">
-              <li>Entry template — title / venue / year — <span class="badge">pending verification</span></li>
-            </ul>
-          </div>
+          <p class="section__lede">
+            Confirmed from BibTeX. Machine-readable source:
+            <a href="references.bib"><code>references.bib</code></a>.
+          </p>
+
+          <h3 class="pub-group__title">Insider threat &amp; behavioral analysis</h3>
+          <ul class="pub-list">
+            <li class="pub">
+              <p class="pub__title">
+                An Architecture for Detection and Incident Response of Insider Cyber Threats
+              </p>
+              <p class="pub__meta">
+                Kaushal Bhavsar, Rushal Chauhan, Krunal Panchal, J.S. Shah · National Conference on
+                Technology and Management, SPCE Visnagar · 2012
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">
+                An insider cyber threat prediction mechanism based on behavioral analysis
+              </p>
+              <p class="pub__meta">
+                Kaushal Bhavsar, Bhushan H. Trivedi · International Conference on ICT for
+                Sustainable Development (ICT4SD 2015), Springer · 2016 · pp. 345–353
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">
+                Predicting Insider Threats by Behavioural Analysis using Deep Learning
+              </p>
+              <p class="pub__meta">
+                Kaushal Bhavsar, Bhushan Trivedi · International Conference on Security &amp;
+                Management · CSREA Press · 2018 · pp. 97–101
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">
+                Prediction of Insider Cyber Threats Using Behavioral Analysis
+              </p>
+              <p class="pub__meta">
+                Kaushal Bhavsar · PhD thesis · Department of Computer Application and IT, GLS
+                University · 2021
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">Detection of Insider Threat Based on Forensic Analysis of Windows</p>
+              <p class="pub__meta">
+                Kaushal Bhavsar, Bhushan Trivedi · ICT Analysis and Applications, Springer Nature
+                Singapore · 2022 · pp. 565–573
+              </p>
+            </li>
+          </ul>
+
+          <h3 class="pub-group__title">Web security &amp; malware</h3>
+          <ul class="pub-list">
+            <li class="pub">
+              <p class="pub__title">Mobile web analytics</p>
+              <p class="pub__meta">
+                Ruchi Gupta, Kinjal Mehta, K. Bhavsar, H. Joshi · IJARCSEE · Vol. 2, No. 3 · 2013 ·
+                pp. 288–292
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">Frontline techniques to prevent web application vulnerability</p>
+              <p class="pub__meta">
+                Shashank Khandelwal, Parthiv Shah, Mr Kaushal Bhavsar, Dr Savita Gandhi · Int. J.
+                Advanced Research in Comput. Sci. Electron. Eng · Vol. 2, No. 2 · 2013 · p. 208
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">Techniques for malware analysis</p>
+              <p class="pub__meta">
+                Savan Gadhiya, Kaushal Bhavsar · International Journal of Advanced Research in
+                Computer Science and Software Engineering · Vol. 3, No. 4 · 2013
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">Techniques for Malicious JavaScript Detection</p>
+              <p class="pub__meta">
+                International Journal of Advanced Research in Computer Science and Software
+                Engineering · 2013
+                <span class="badge">author metadata incomplete in source BibTeX</span>
+              </p>
+            </li>
+            <li class="pub">
+              <p class="pub__title">
+                Requirements to build a system that uses machine learning based approach for
+                analysis of forensic data
+              </p>
+              <p class="pub__meta">
+                S.B. Yagnik · IJCTT · Vol. 4, No. 4 · 2013 · pp. 927–932
+              </p>
+            </li>
+          </ul>
+
+          <h3 class="pub-group__title">Patent</h3>
+          <ul class="pub-list">
+            <li class="pub">
+              <p class="pub__title">
+                Computer-based systems configured for malware detection and methods of use thereof
+              </p>
+              <p class="pub__meta">
+                Kaushal Bhavsar · US Patent US&nbsp;12361127&nbsp;B1 · 15 July 2025
+              </p>
+            </li>
+          </ul>
 
           <h2 class="section__title">Datasets</h2>
           <div class="panel">
@@ -145,7 +241,10 @@
                 Legacy LSTM USB anomaly script retained at
                 <code>examples/legacy/lstm_usb_anomaly.py</code>
               </li>
-              <li>Additional experiments — <span class="badge">pending verification</span></li>
+              <li>
+                Behavioral / deep-learning insider threat prediction methods described in Bhavsar
+                &amp; Trivedi (2016, 2018) and the 2021 thesis
+              </li>
             </ul>
           </div>
         </div>
