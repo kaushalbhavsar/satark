@@ -1,17 +1,17 @@
 /* SATARK website — technical, high-contrast, responsive */
 
 :root {
-  --bg: #0b0f14;
-  --bg-elevated: #121821;
-  --bg-soft: #17202b;
-  --border: #2a3544;
-  --text: #e8eef6;
-  --text-muted: #9aabbf;
-  --accent: #3dd6c6;
-  --accent-strong: #22b8a8;
-  --accent-dim: rgba(61, 214, 198, 0.12);
+  --bg: #0c0c0e;
+  --bg-elevated: #161618;
+  --bg-soft: #1d1d21;
+  --border: #2e2e34;
+  --text: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --accent: #ed1c24;
+  --accent-strong: #c81018;
+  --accent-dim: rgba(237, 28, 36, 0.14);
   --warning: #e0b35a;
-  --focus: #7dd3fc;
+  --focus: #ff6b72;
   --max: 68rem;
   --font-display: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
@@ -44,9 +44,9 @@ body {
   line-height: 1.65;
   color: var(--text);
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(61, 214, 198, 0.14), transparent 55%),
-    radial-gradient(900px 500px at 90% 0%, rgba(125, 211, 252, 0.08), transparent 50%),
-    linear-gradient(180deg, #0b0f14 0%, #0e141c 45%, #0b0f14 100%);
+    radial-gradient(1100px 560px at 8% -12%, rgba(237, 28, 36, 0.18), transparent 55%),
+    radial-gradient(800px 420px at 92% 0%, rgba(237, 28, 36, 0.06), transparent 50%),
+    linear-gradient(180deg, #0c0c0e 0%, #121214 45%, #0c0c0e 100%);
   background-attachment: fixed;
 }
 
@@ -62,7 +62,7 @@ a {
 }
 
 a:hover {
-  color: #7cf0e4;
+  color: #ff4d54;
 }
 
 a:focus-visible,
@@ -80,7 +80,7 @@ button:focus-visible,
   z-index: 1000;
   padding: var(--space-2) var(--space-3);
   background: var(--accent);
-  color: #041016;
+  color: #ffffff;
   font-weight: 600;
   border-radius: var(--radius);
 }
@@ -113,8 +113,8 @@ button:focus-visible,
 
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.55rem;
+  align-items: center;
+  gap: 0.65rem;
   color: var(--text);
   text-decoration: none;
   font-family: var(--font-display);
@@ -126,8 +126,17 @@ button:focus-visible,
   color: var(--text);
 }
 
+.brand__logo {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  border-radius: 0.2rem;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
 .brand__mark {
-  color: var(--accent);
+  color: var(--text);
   font-size: 1.2rem;
 }
 
@@ -232,8 +241,24 @@ button:focus-visible,
   }
 }
 
-.hero__brand {
+.hero__identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin: 0 0 var(--space-3);
+}
+
+.hero__logo {
+  width: clamp(4.5rem, 12vw, 6.5rem);
+  height: clamp(4.5rem, 12vw, 6.5rem);
+  object-fit: contain;
+  border-radius: 0.45rem;
+  background: #ffffff;
+  box-shadow: 0 10px 40px rgba(237, 28, 36, 0.22);
+}
+
+.hero__brand {
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(3rem, 9vw, 5.5rem);
   font-weight: 700;
@@ -287,12 +312,12 @@ button:focus-visible,
 
 .button--primary {
   background: var(--accent);
-  color: #041016;
+  color: #ffffff;
 }
 
 .button--primary:hover {
-  background: #6eebdf;
-  color: #041016;
+  background: #ff333b;
+  color: #ffffff;
 }
 
 .button--secondary {
