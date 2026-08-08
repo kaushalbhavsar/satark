@@ -1,61 +1,88 @@
-site_name: SATARK
-site_description: Scalable Automated Technology for Analysis and Ranking of Known Threats
-site_url: https://github.com/kaushalbhavsar/satark
+site_name: SATARK Documentation
+site_description: >
+  Documentation for the SATARK open-source security analytics framework.
+site_url: https://satark.org/docs/
 repo_url: https://github.com/kaushalbhavsar/satark
 repo_name: kaushalbhavsar/satark
+edit_uri: edit/main/docs/
+docs_dir: docs
 
 theme:
   name: material
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: teal
       accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: teal
       accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.tabs
     - navigation.sections
+    - navigation.indexes
+    - navigation.top
     - content.code.copy
+    - content.action.edit
     - search.suggest
+    - search.highlight
 
 nav:
   - Home: index.md
-  - Getting Started:
-      - Installation: getting-started/installation.md
-      - Quickstart: getting-started/quickstart.md
-  - Architecture:
-      - Overview: architecture/overview.md
-      - Events: architecture/events.md
-      - Plugins: architecture/plugins.md
-      - Scoring: architecture/scoring.md
-  - API:
-      - Core: api/core.md
+  - Getting started: getting-started.md
+  - Architecture: architecture.md
+  - Concepts:
+      - Events: concepts/events.md
+      - Findings: concepts/findings.md
+      - Scoring: concepts/scoring.md
+      - Plugins: concepts/plugins.md
   - Plugins:
-      - Insider Threat: plugins/insider.md
-  - Guides:
-      - Writing a Plugin: guides/writing-a-plugin.md
+      - Overview: plugins/index.md
+      - Insider threats: plugins/insider.md
+      - Malware: plugins/malware.md
+      - Phishing: plugins/phishing.md
+      - Web: plugins/web.md
+      - Email: plugins/email.md
+      - Cloud: plugins/cloud.md
+      - Identity: plugins/identity.md
+  - API reference: api/index.md
+  - Research origins: research/origins.md
 
 plugins:
   - search
   - mkdocstrings:
       handlers:
         python:
+          paths: [src]
           options:
             docstring_style: google
             show_source: true
+            show_root_heading: true
+            members_order: source
+            merge_init_into_class: true
+            separate_signature: true
+            show_signature_annotations: true
 
 markdown_extensions:
   - admonition
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - pymdownx.details
+  - attr_list
   - tables
   - toc:
       permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kaushalbhavsar/satark
+    - icon: fontawesome/solid/globe
+      link: https://satark.org/
