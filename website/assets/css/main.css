@@ -503,6 +503,42 @@ button:focus-visible,
   margin-top: 0.75rem;
 }
 
+.timeline__quote {
+  margin: 0.85rem 0 0;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(237, 28, 36, 0.08);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.timeline__media {
+  margin: 1rem 0 0;
+}
+
+.timeline__img {
+  display: block;
+  width: 100%;
+  max-width: 52rem;
+  height: auto;
+  border: 1px solid rgba(237, 28, 36, 0.45);
+  border-radius: calc(var(--radius) + 0.1rem);
+  background: var(--bg-elevated);
+  box-shadow:
+    0 0 0 1px rgba(237, 28, 36, 0.1) inset,
+    0 0 18px rgba(237, 28, 36, 0.22);
+}
+
+.timeline__media-caption {
+  margin: 0.65rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  max-width: 42rem;
+}
+
 .badge {
   display: inline-block;
   margin-left: 0.4rem;
