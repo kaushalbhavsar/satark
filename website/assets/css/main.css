@@ -467,6 +467,10 @@ button:focus-visible,
   color: var(--text-muted);
 }
 
+.timeline__body + .timeline__body {
+  margin-top: 0.75rem;
+}
+
 .badge {
   display: inline-block;
   margin-left: 0.4rem;
