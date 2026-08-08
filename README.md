@@ -13,6 +13,7 @@ The official SATARK website and documentation are published at [https://satark.o
 - History: [https://satark.org/history/](https://satark.org/history/)
 - Research: [https://satark.org/research/](https://satark.org/research/)
 - Community: [https://satark.org/community/](https://satark.org/community/)
+- Trademark: [https://satark.org/trademark/](https://satark.org/trademark/) (India TM Application No. 7223965, Class 42)
 - Repository: [https://github.com/kaushalbhavsar/satark](https://github.com/kaushalbhavsar/satark)
 
 ## Repository structure
