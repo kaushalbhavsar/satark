@@ -64,6 +64,20 @@ Then visit:
 - http://localhost:8000/history/
 - http://localhost:8000/research/
 
+### Quick demo (insider plugin)
+
+```bash
+uv sync --group dev
+uv run satark list-plugins
+uv run satark analyze -p insider -d examples/data/sample_insider.csv --threshold 0.5
+```
+
+Or run the scripted demo:
+
+```bash
+./scripts/demo_insider.sh
+```
+
 ### Tests
 
 ```bash
