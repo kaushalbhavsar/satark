@@ -604,6 +604,97 @@ button:focus-visible,
   color: #d7e6f5;
 }
 
+/* Mermaid architecture diagrams — neon outlines on dark ground */
+.diagram-frame {
+  position: relative;
+  margin: var(--space-4) 0 0;
+  padding: var(--space-4);
+  overflow: hidden;
+  background:
+    radial-gradient(720px 280px at 20% 0%, rgba(237, 28, 36, 0.16), transparent 60%),
+    radial-gradient(520px 240px at 90% 100%, rgba(224, 179, 90, 0.08), transparent 55%),
+    linear-gradient(180deg, #101012 0%, #0c0c0e 100%);
+  border: 1px solid rgba(237, 28, 36, 0.45);
+  border-radius: calc(var(--radius) + 0.2rem);
+  box-shadow:
+    0 0 0 1px rgba(237, 28, 36, 0.12) inset,
+    0 0 28px rgba(237, 28, 36, 0.18),
+    var(--shadow);
+}
+
+.diagram-frame__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 55%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 77, 84, 0.18), transparent 70%);
+  animation: diagram-pulse 5.5s ease-in-out infinite;
+}
+
+.diagram-frame__caption {
+  margin: var(--space-3) 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 48rem;
+}
+
+.diagram {
+  margin: 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.diagram .node rect,
+.diagram .node polygon,
+.diagram .node circle,
+.diagram .node path,
+.diagram .cluster rect {
+  filter:
+    drop-shadow(0 0 3px rgba(237, 28, 36, 0.95))
+    drop-shadow(0 0 10px rgba(237, 28, 36, 0.45));
+}
+
+.diagram .edgePath .path,
+.diagram .flowchart-link {
+  stroke: #ff4d54 !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(0 0 4px rgba(255, 77, 84, 0.85));
+}
+
+.diagram .marker {
+  fill: #ff4d54 !important;
+  stroke: #ff4d54 !important;
+  filter: drop-shadow(0 0 3px rgba(255, 77, 84, 0.9));
+}
+
+.diagram .edgeLabel rect {
+  fill: #0c0c0e !important;
+  opacity: 0.92;
+}
+
+.diagram .cluster-label,
+.diagram .nodeLabel,
+.diagram .edgeLabel {
+  color: var(--text);
+}
+
+@keyframes diagram-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(4%);
+  }
+}
+
 @media (min-width: 820px) {
   .brand__tag {
     display: inline;
@@ -653,7 +744,8 @@ button:focus-visible,
 
   .hero__inner,
   .button,
-  .button:hover {
+  .button:hover,
+  .diagram-frame__glow {
     transition: none;
     transform: none;
     animation: none;
