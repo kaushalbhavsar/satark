@@ -78,6 +78,8 @@ Or run the scripted demo:
 ./scripts/demo_insider.sh
 ```
 
+Screenshots from this run are embedded on the website ([architecture page](https://satark.org/architecture/) and homepage) under `website/assets/images/demo/`.
+
 ### Tests
 
 ```bash
