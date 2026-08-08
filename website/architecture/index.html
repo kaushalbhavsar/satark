@@ -134,6 +134,53 @@ flowchart TB
         </div>
       </section>
 
+      <section class="section" aria-labelledby="demo-title">
+        <div class="container">
+          <h2 class="section__title" id="demo-title">Working demo</h2>
+          <p class="section__lede">
+            Live CLI run of the insider plugin against sample USB/file telemetry—listing plugins,
+            then producing explainable elevated findings.
+          </p>
+          <div class="shot-grid">
+            <figure class="shot">
+              <img
+                class="shot__img"
+                src="../assets/images/demo/cli-plugins.png"
+                alt="SATARK CLI listing built-in plugins and starting insider analysis on sample CSV data"
+                width="1075"
+                height="686"
+                loading="lazy"
+              />
+              <figcaption class="shot__caption">
+                <code>satark list-plugins</code> then
+                <code>satark analyze -p insider</code> on
+                <code>examples/data/sample_insider.csv</code>.
+              </figcaption>
+            </figure>
+            <figure class="shot">
+              <img
+                class="shot__img"
+                src="../assets/images/demo/cli-findings.png"
+                alt="SATARK CLI findings table showing anomalous USB and file activity for alice with explainable risk scores"
+                width="1075"
+                height="686"
+                loading="lazy"
+              />
+              <figcaption class="shot__caption">
+                Elevated findings: USB spike (risk 1.00) and file spike (risk 0.90) with score
+                factors and rule IDs.
+              </figcaption>
+            </figure>
+          </div>
+          <p class="section__lede section__lede--follow">
+            Reproduce locally after <code>uv sync --group dev</code>:
+            <code>./scripts/demo_insider.sh</code>
+            or
+            <code>uv run satark analyze -p insider -d examples/data/sample_insider.csv --threshold 0.5</code>.
+          </p>
+        </div>
+      </section>
+
       <section class="section section--tight" aria-labelledby="layers-title">
         <div class="container split">
           <div class="panel">
