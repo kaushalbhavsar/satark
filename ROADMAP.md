@@ -24,7 +24,6 @@ SATARK is an early open-source rebuild. Near-term priorities (subject to change)
 
 - [ ] Verify and publish historical research references on satark.org
 - [ ] Custom domain DNS + TLS for https://satark.org
-- [ ] Counsel review of branding / trademark wording
 
 ## Community
 
