@@ -54,6 +54,7 @@ rm -rf public
 mkdir -p public
 cp -R website/. public/
 uv run mkdocs build --site-dir public/docs
+uv run python scripts/generate_sitemap.py --public-dir public --base-url https://satark.org
 python -m http.server 8000 --directory public
 ```
 
@@ -61,8 +62,7 @@ Then visit:
 
 - http://localhost:8000/
 - http://localhost:8000/docs/
-- http://localhost:8000/history/
-- http://localhost:8000/research/
+- http://localhost:8000/sitemap.xml
 
 ### Quick demo (insider plugin)
 
