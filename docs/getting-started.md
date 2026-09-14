@@ -2,26 +2,34 @@
 
 ## Requirements
 
-- Python **3.13+**
-- [uv](https://docs.astral.sh/uv/) (recommended for this repository)
+- Python 3.12 or later
+- [uv](https://docs.astral.sh/uv/) is recommended for repository development
 
-## Install
+## Install from a checkout
 
 ```bash
 git clone https://github.com/kaushalbhavsar/satark.git
 cd satark
-uv sync --group docs --group dev
+uv sync --group dev
 ```
 
-Or with pip and venv:
+Install optional machine-learning dependencies only when using the LSTM
+detector:
 
 ```bash
-python3.13 -m venv .venv
-source .venv/bin/activate
+uv sync --extra ml
+```
+
+For a conventional virtual environment:
+
+```bash
+python -m venv .venv
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+# macOS/Linux: source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-## Verify
+## Confirm the installation
 
 ```bash
 uv run satark version
@@ -29,43 +37,48 @@ uv run satark list-plugins
 uv run pytest
 ```
 
-## Analyze sample insider data
+`list-plugins` displays the built-in plugin names and their current
+descriptions. Availability does not mean every plugin is feature-complete; see
+the individual plugin pages for their scope.
+
+## Run the included insider example
 
 ```bash
 uv run python examples/run_insider_analysis.py
-uv run satark analyze -p insider -d examples/data/sample_insider.csv
 ```
 
-## Local documentation
+The script writes sample hourly telemetry, normalizes it, runs the insider
+plugin, prioritizes the findings, and prints their risk and ATT&CK references.
 
-Documentation only:
+You can run the same data through the CLI:
 
 ```bash
-uv sync --group docs
-uv run mkdocs serve
+uv run satark analyze --plugin insider --data examples/data/sample_insider.csv
 ```
 
-MkDocs serves documentation at `http://127.0.0.1:8000/` during local docs development.
+Use `--threshold 0.5` to change the engine's elevated-risk cutoff, and
+`--explain/--no-explain` to control explanation output. Supported CLI input
+formats are CSV, JSON (a list of records), and JSONL (one object per line).
 
-## Complete website (marketing site + docs)
+## A minimal library workflow
 
-```bash
-rm -rf public
-mkdir -p public
-cp -R website/. public/
-uv run mkdocs build --site-dir public/docs
-python -m http.server 8000 --directory public
+```python
+from satark.core.engine import AnalysisEngine
+from satark.core.plugin import PluginContext
+from satark.plugins import create_plugin
+
+records = [
+    {"timestamp": "2026-09-14T09:00:00+00:00", "user": "alice", "usb_events": 1},
+    {"timestamp": "2026-09-14T10:00:00+00:00", "user": "alice", "usb_events": 8},
+]
+
+engine = AnalysisEngine(plugins=[create_plugin("insider")])
+events = engine.ingest_raw("insider", records, PluginContext())
+result = engine.analyze(plugin_name="insider", events=events)
+
+for finding in result.findings:
+    print(finding.detection.title, finding.score.value)
 ```
 
-Then open:
-
-- [http://localhost:8000/](http://localhost:8000/)
-- [http://localhost:8000/docs/](http://localhost:8000/docs/)
-- [http://localhost:8000/history/](http://localhost:8000/history/)
-- [http://localhost:8000/research/](http://localhost:8000/research/)
-
-## Next
-
-- [Architecture](architecture.md)
-- [Plugin contract](concepts/plugins.md)
-- [Scoring](concepts/scoring.md)
+Continue with [data onboarding](data-onboarding.md) before using operational
+telemetry.

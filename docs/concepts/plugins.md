@@ -1,6 +1,7 @@
 # Plugin contract
 
-Plugins implement a shared lifecycle:
+Plugins implement a shared lifecycle and inherit from the abstract `Plugin`
+base class:
 
 ```text
 collect → normalize → detect → score → explain
@@ -30,3 +31,30 @@ from satark.plugins import builtin_plugins, create_plugin
 print(builtin_plugins())
 plugin = create_plugin("insider")
 ```
+
+## Implementing a plugin
+
+Implement `meta`, `normalize`, `detect`, and `score`. `collect` is optional;
+the default returns no records. `explain` has a generic implementation based on
+the score factors, but a domain plugin may override it.
+
+```python
+class ExamplePlugin(Plugin):
+    @property
+    def meta(self) -> PluginMeta:
+        return PluginMeta(name="example", domain="example")
+
+    def normalize(self, records, context) -> list[Event]:
+        ...
+
+    def detect(self, events, context) -> list[Detection]:
+        ...
+
+    def score(self, detection, events, context) -> ScoreBreakdown:
+        ...
+```
+
+Register a built-in plugin in `satark.plugins.registry`. Test normalization,
+positive and negative detection cases, score bounds, and any input parsing
+errors. Keep network access, model loading, and vendor SDK setup outside
+`detect()` where possible so the method remains deterministic and easy to test.

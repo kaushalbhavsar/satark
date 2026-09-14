@@ -36,6 +36,7 @@ theme:
 nav:
   - Home: index.md
   - Getting started: getting-started.md
+  - Data onboarding: data-onboarding.md
   - Architecture: architecture.md
   - Concepts:
       - Events: concepts/events.md
