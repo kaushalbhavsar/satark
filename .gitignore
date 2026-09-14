@@ -39,3 +39,6 @@ anomalies_detected.csv
 # Generated sites
 site/
 public/
+
+# Local demo recordings
+artifacts/

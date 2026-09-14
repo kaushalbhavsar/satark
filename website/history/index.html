@@ -6,13 +6,13 @@
     <title>History — SATARK</title>
     <meta
       name="description"
-      content="A careful outline of SATARK’s path from security research to commercial product work and the current open-source framework rebuild."
+      content="The history of SATARK from its 2011 origins through insider threat detection, academic validation, PhD research, and the current open-source framework rebuild."
     />
     <link rel="canonical" href="https://satark.org/history/" />
     <meta property="og:title" content="History — SATARK" />
     <meta
       property="og:description"
-      content="Research origin, commercial product phase, and open-source rebuild — with unverified details marked clearly."
+      content="From web security services in 2011 through academic validation and a defended PhD thesis to today’s open-source SATARK framework."
     />
     <meta property="og:url" content="https://satark.org/history/" />
     <meta property="og:type" content="website" />
@@ -23,6 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="../assets/logo.jpg" type="image/jpeg" />
     <link rel="stylesheet" href="../assets/css/main.css" />
   </head>
   <body>
@@ -30,6 +31,7 @@
     <header class="site-header">
       <div class="container site-header__inner">
         <a class="brand" href="../">
+          <img class="brand__logo" src="../assets/logo.jpg" alt="SATARK logo" width="32" height="32" />
           <span class="brand__mark">SATARK</span>
           <span class="brand__tag">security analytics</span>
         </a>
@@ -46,6 +48,7 @@
           <ul>
             <li><a href="../">SATARK</a></li>
             <li><a href="../docs/">Documentation</a></li>
+            <li><a href="../architecture/">Architecture</a></li>
             <li><a href="../research/">Research</a></li>
             <li><a href="./" aria-current="page">History</a></li>
             <li><a href="../community/">Community</a></li>
@@ -64,62 +67,156 @@
         <div class="container">
           <h1>History</h1>
           <p>
-            SATARK originated in security research, was expanded as Scalable Automated Technology
-            for Analysis and Ranking of Known Threats, later developed as a commercial security
-            product, and is now being rebuilt as an open-source framework.
+            From early web security work in 2011 through academic validation, deep-learning research,
+            and a defended PhD thesis—to an open-source security analytics framework at
+            <a href="https://satark.org/">satark.org</a>.
           </p>
         </div>
       </header>
 
       <section class="section">
         <div class="container">
-          <p class="notice">
-            <strong>Verification note:</strong> Exact dates, publications, customers, and commercial
-            metrics are not asserted here. Timeline entries marked
-            <span class="badge">pending verification</span> need confirmed evidence before they can
-            be stated as fact.
-          </p>
-
-          <h2 class="section__title">Narrative</h2>
-          <div class="panel">
-            <ul class="list-plain">
-              <li>SATARK began as security research work.</li>
-              <li>
-                The project name was expanded to
-                <em>Scalable Automated Technology for Analysis and Ranking of Known Threats</em>.
-              </li>
-              <li>Concepts and branding were later developed in a commercial security product context.</li>
-              <li>
-                The current repository rebuilds SATARK as an open-source security analytics
-                framework with a shared architecture and domain plugins.
-              </li>
-            </ul>
-          </div>
-
           <h2 class="section__title">Timeline</h2>
           <ol class="timeline">
             <li class="timeline__item">
-              <span class="timeline__meta">Research origin <span class="badge">pending verification</span></span>
-              <h3 class="timeline__title">Security research beginnings</h3>
+              <span class="timeline__meta">2011</span>
+              <h3 class="timeline__title">The Origins of Satark</h3>
               <p class="timeline__body">
-                Early work explored threat analysis, ranking, and related security analytics ideas.
-                Specific start dates and publication details are pending verification.
+                In December 2011, Kaushal Bhavsar introduced the initial vision for Project Satark
+                alongside team members Shanky Sachdeva and Hiren Chauhan. Originally conceived to
+                provide web security services and on-demand website security assessments, the team
+                quickly laid the foundational groundwork. By mid-December, they had developed the
+                project’s branding, including its first logo, and crafted multiple presentations
+                tailored for both technical and non-technical audiences.
               </p>
             </li>
             <li class="timeline__item">
-              <span class="timeline__meta">Name expansion <span class="badge">pending verification</span></span>
-              <h3 class="timeline__title">SATARK expansion</h3>
+              <span class="timeline__meta">2013</span>
+              <h3 class="timeline__title">The Pivot to Insider Threat Detection</h3>
               <p class="timeline__body">
-                The acronym was associated with Scalable Automated Technology for Analysis and
-                Ranking of Known Threats. Supporting artifacts will be linked here when confirmed.
+                The project’s core mission crystallized in 2013. Following an unsuccessful attempt
+                to acquire the “satark.com” domain from Sanjiv Chhabra in August due to a pricing
+                disagreement, the team secured an alternative domain and officially pivoted their
+                focus. In September 2013, Satark was formally introduced as a dedicated insider
+                threat detection system designed to combat sabotage, fraud, and intellectual
+                property theft. The software was engineered to meticulously track employee activity
+                across programs, files, and USB devices to identify internal risks. By the end of
+                the year, Vatsal Parekh had collaborated to finalize a comprehensive Satark Case
+                Study, cementing the product’s new direction.
               </p>
             </li>
             <li class="timeline__item">
-              <span class="timeline__meta">Commercial phase <span class="badge">pending verification</span></span>
-              <h3 class="timeline__title">Commercial security product development</h3>
+              <span class="timeline__meta">26 May 2014</span>
+              <h3 class="timeline__title">USB Device Audit Trail for Compliance</h3>
               <p class="timeline__body">
-                SATARK-related work was developed as a commercial security product. No client names,
-                revenue figures, or customer counts are claimed on this page.
+                Satark positioned USB monitoring as a core compliance capability—helping
+                organizations track removable media usage and retain an audit trail for IT security.
+              </p>
+              <blockquote class="timeline__quote">
+                Is fear of data theft lurking on the back of your mind? Satark helps you track usage
+                of USB Devices in your organization and maintain an audit trail for IT Security
+                Compliance.
+              </blockquote>
+              <figure class="timeline__media">
+                <img
+                  class="timeline__img"
+                  src="../assets/images/history/usb-audit-trail-2014.jpg"
+                  alt="Satark USB audit trail for Node002 showing filtered device Added and Removed events with device identification notes"
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                />
+                <figcaption class="timeline__media-caption">
+                  Product UI: computer search, date filters, and per-host USB device identification
+                  (example host Node002).
+                </figcaption>
+              </figure>
+            </li>
+            <li class="timeline__item">
+              <span class="timeline__meta">2014–2015</span>
+              <h3 class="timeline__title">Commercial Expansion and Mobile Development</h3>
+              <p class="timeline__body">
+                Satark’s commercial footprint expanded significantly throughout 2014. The year
+                began with the distribution of the official Satark Whitepaper in January, followed
+                by its first product brochure being featured in the SoftwareSuggest database in
+                April. The project actively recruited new talent, outlining internship terms for
+                Jaymin Suthar, and coordinated with Bhargav Bhavsar of 9Solve Solutions to
+                establish regional INR pricing strategies.
+              </p>
+              <p class="timeline__body">
+                In 2015, the platform broadened its technological capabilities. The addition of
+                intern Priyank Mal bolstered the team’s data analytics expertise, paving the way
+                for mobile innovation. By June, the team successfully initiated a demo for
+                “Satark&nbsp;@mobile,” a GPS tracking application, delivering the first APK
+                directly to a client.
+              </p>
+            </li>
+            <li class="timeline__item">
+              <span class="timeline__meta">2016</span>
+              <h3 class="timeline__title">Academic Validation &amp; Platform Growth</h3>
+              <p class="timeline__body">
+                In January 2016, an updated presentation (“Satark2015”) re-positioned the system as
+                a Comprehensive Insider Threat Detection and Management Platform. In May 2016, an
+                updated Case Study was released detailing real-world deployment scenarios.
+              </p>
+              <p class="timeline__body">
+                Simultaneously, the underlying core technology achieved academic validation. The
+                paper
+                <cite
+                  >“An Insider Cyber Threat Prediction Mechanism Based on Behavioral Analysis”</cite
+                >, co-authored by Kaushal Bhavsar and Prof. Bhushan H. Trivedi, was presented at
+                the International Conference on ICT for Sustainable Development (ICT4SD 2015) and
+                published in the Springer AISC series in 2016. The paper detailed Satark’s novel
+                methodology: evaluating behavioral precursors (unmet expectations, disgruntlement)
+                alongside technical precursors (masquerading, system exploitation) to assign users
+                a dynamic “Threat-Rank” on a scale of 1 to 10.
+              </p>
+            </li>
+            <li class="timeline__item">
+              <span class="timeline__meta">2018</span>
+              <h3 class="timeline__title">Advanced Research &amp; Deep Learning Integration</h3>
+              <p class="timeline__body">
+                As the platform evolved, the underlying algorithms progressed from traditional
+                baseline analytics to advanced machine learning models. On July 31, 2018, Kaushal
+                presented research on
+                <cite
+                  >“Predicting Insider Threats by Behavioral Analysis Using Deep Learning”</cite
+                >
+                at the SAM’18 conference, establishing an AI-driven theoretical framework for the
+                Satark ecosystem.
+              </p>
+            </li>
+            <li class="timeline__item">
+              <span class="timeline__meta">2020–2021</span>
+              <h3 class="timeline__title">PhD Synopsis, Thesis Submission &amp; Defense</h3>
+              <p class="timeline__body">
+                <strong>August 10, 2020:</strong> The formal PhD synopsis
+                <cite>“Prediction of Insider Cyber Threats using Behavioral Analysis”</cite> was
+                submitted to GLS University.
+              </p>
+              <p class="timeline__body">
+                <strong>July 26, 2021:</strong> The complete PhD thesis was submitted for formal
+                defense.
+              </p>
+              <p class="timeline__body">
+                <strong>August 5, 2021:</strong> Research titled
+                <cite>“Detection of insider threat based on forensic analysis of windows”</cite>
+                was presented at the ICT4SD 2021 conference, refining endpoint forensic techniques.
+              </p>
+              <p class="timeline__body">
+                <strong>October 10, 2021:</strong> Following evaluation and feedback from the
+                review committee, the finalized thesis was formally resubmitted.
+              </p>
+            </li>
+            <li class="timeline__item">
+              <span class="timeline__meta">2022</span>
+              <h3 class="timeline__title">Conferment of Doctorate</h3>
+              <p class="timeline__body">
+                In March 2022, the academic journey culminated in the official conferment of the
+                PhD degree, formally establishing Dr. Kaushal Bhavsar. This marked the transition
+                of Project Satark from a 2011 web security concept into a fully defended,
+                academically validated, and commercially tested framework for insider cyber threat
+                prediction.
               </p>
             </li>
             <li class="timeline__item">
@@ -152,6 +249,7 @@
           <h2>Explore</h2>
           <ul>
             <li><a href="../docs/">Documentation</a></li>
+            <li><a href="../architecture/">Architecture</a></li>
             <li><a href="../research/">Research</a></li>
             <li><a href="./">History</a></li>
             <li><a href="../community/">Community</a></li>
@@ -165,7 +263,6 @@
                 >GitHub repository</a
               >
             </li>
-            <li><a href="../trademark/">Name and branding note</a></li>
           </ul>
         </div>
       </div>
