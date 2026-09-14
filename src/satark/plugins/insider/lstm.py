@@ -7,9 +7,7 @@ backend is opt-in and supplies model-derived evidence for analyst review.
 
 from __future__ import annotations
 
-from collections import defaultdict
 from collections.abc import Sequence
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
 
@@ -21,22 +19,13 @@ from satark.core.models.evidence import Evidence, EvidenceKind
 from satark.core.models.finding import Finding
 from satark.core.models.score import ScoreFactor
 from satark.scoring.risk import aggregate_score
+from satark.timeseries import build_time_series
 
 _FEATURES = (
     EventCategory.USB_INSERTION,
     EventCategory.FILE_READ,
     EventCategory.FILE_WRITE,
 )
-
-
-@dataclass(frozen=True)
-class LstmAnomaly:
-    """A scored sequence ending at one actor timestamp."""
-
-    actor: str
-    event_ids: tuple[str, ...]
-    timestamp: str
-    score: float
 
 
 class LstmInsiderDetector:
@@ -241,22 +230,20 @@ class LstmInsiderDetector:
     def _buckets(
         events: Sequence[Event],
     ) -> dict[str, list[tuple[np.ndarray, datetime, list[Event]]]]:
-        grouped: dict[str, dict[datetime, list[Event]]] = defaultdict(lambda: defaultdict(list))
-        for event in events:
-            if event.category in _FEATURES:
-                grouped[event.actor or "unknown"][event.timestamp].append(event)
+        by_id = {event.id: event for event in events}
+        time_series = build_time_series(
+            events,
+            categories=_FEATURES,
+            fill_gaps=True,
+            group_by="actor",
+        )
         result: dict[str, list[tuple[np.ndarray, datetime, list[Event]]]] = {}
-        for actor, timestamp_events in grouped.items():
+        for actor, points in time_series.items():
             rows: list[tuple[np.ndarray, datetime, list[Event]]] = []
-            for timestamp, bucket_events in sorted(timestamp_events.items()):
-                vector = np.zeros(len(_FEATURES), dtype=float)
-                for event in bucket_events:
-                    feature_index = _FEATURES.index(event.category)
-                    count = float(event.attributes.get("count", 1))
-                    if not np.isfinite(count) or count < 0:
-                        raise ValueError("Activity counts must be finite and nonnegative")
-                    vector[feature_index] += count
-                rows.append((vector, timestamp, bucket_events))
+            for point in points:
+                vector = np.array([point.values[category] for category in _FEATURES], dtype=float)
+                point_events = [by_id[event_id] for event_id in point.event_ids]
+                rows.append((vector, point.bucket_start, point_events))
             result[actor] = rows
         return result
 

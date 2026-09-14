@@ -37,6 +37,8 @@ nav:
   - Home: index.md
   - Getting started: getting-started.md
   - Data onboarding: data-onboarding.md
+  - Log ingestion: ingestion.md
+  - Time series: time-series.md
   - Architecture: architecture.md
   - Concepts:
       - Events: concepts/events.md
