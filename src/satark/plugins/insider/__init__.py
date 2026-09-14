@@ -3,7 +3,8 @@
 Purpose
 -------
 Detect anomalous endpoint behaviors associated with insider threats — USB
-activity spikes, unusual file access, and related behavioral patterns.
+activity spikes, unusual file access, and related behavioral patterns. The
+optional ``satark.plugins.insider.lstm`` backend provides ML enrichment.
 
 Architecture
 ------------

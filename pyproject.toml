@@ -7,7 +7,7 @@ license = { text = "MIT" }
 authors = [
     { name = "Kaushal Bhavsar", email = "pseudotot@gmail.com" },
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 keywords = [
     "security",
     "threat-detection",
@@ -40,6 +40,7 @@ dependencies = [
 ml = [
     "scikit-learn>=1.6",
     "matplotlib>=3.10",
+    "tensorflow>=2.18",
 ]
 dev = [
     "pytest>=8.3",

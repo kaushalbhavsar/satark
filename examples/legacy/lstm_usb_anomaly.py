@@ -12,13 +12,13 @@ Usage:
 - Run the script: python lstm_anomaly_detection.py
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.models import Sequential
 
 # --- CONFIGURATION ---
 
@@ -33,10 +33,15 @@ BATCH_SIZE = 32
 
 # Load and sort data
 df = pd.read_csv(DATA_PATH, parse_dates=[TIMESTAMP_COL])
-df = df.sort_values(TIMESTAMP_COL)
+df = df.sort_values(TIMESTAMP_COL).reset_index(drop=True)
 
 # Fill missing values (simple)
 df[FEATURES] = df[FEATURES].fillna(0)
+
+if len(df) <= SEQUENCE_LENGTH:
+    raise ValueError(
+        f"Need more than {SEQUENCE_LENGTH} telemetry rows; received {len(df)}."
+    )
 
 # Scale features
 scaler = StandardScaler()
@@ -46,7 +51,7 @@ X_scaled = scaler.fit_transform(df[FEATURES])
 # Create sequences for LSTM
 def create_sequences(data, seq_length):
     xs = []
-    for i in range(len(data) - seq_length):
+    for i in range(len(data) - seq_length + 1):
         x = data[i : (i + seq_length)]
         xs.append(x)
     return np.array(xs)
@@ -93,16 +98,17 @@ anomalies = mse > threshold
 
 # Add results to DataFrame
 anomaly_col = np.full(len(df), False)
-anomaly_col[SEQUENCE_LENGTH:] = anomalies
+anomaly_col[SEQUENCE_LENGTH - 1:] = anomalies
 df["anomaly"] = anomaly_col
 
 # --- VISUALIZE ---
 
 plt.figure(figsize=(15, 4))
-plt.plot(df[TIMESTAMP_COL], mse, label="Anomaly Score (MSE)")
+score_timestamps = df[TIMESTAMP_COL].iloc[SEQUENCE_LENGTH - 1:]
+plt.plot(score_timestamps, mse, label="Anomaly Score (MSE)")
 plt.axhline(y=threshold, color="r", linestyle="--", label="Threshold")
 plt.scatter(
-    df[TIMESTAMP_COL][df["anomaly"]], mse[anomalies], color="red", marker="x", label="Anomalies"
+    score_timestamps[anomalies], mse[anomalies], color="red", marker="x", label="Anomalies"
 )
 plt.title("LSTM Anomaly Detection (Insider Threat)")
 plt.xlabel("Time")
@@ -116,7 +122,8 @@ plt.show()
 df[df["anomaly"]].to_csv("anomalies_detected.csv", index=False)
 
 print(
-    f"Anomaly detection complete. {df['anomaly'].sum()} anomalies found and saved to anomalies_detected.csv"
+    f"Anomaly detection complete. {df['anomaly'].sum()} anomalies found and saved to "
+    "anomalies_detected.csv"
 )
 
 # --- END OF SCRIPT ---
